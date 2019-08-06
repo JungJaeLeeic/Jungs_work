@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+
+<head>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!--Page Info-->
+    <title>The Simpson's Paradox</title>
+    <!--css link-->
+    <link rel="stylesheet" href="styles/skeleton.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <!--Required JS resources-->
+    <!--NB: better to have resources before the main body but still works even if they are not-->
+    <script src="scripts/plotly-1.47.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+</head>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>The Simpson's Paradox</h1>
+        <div class="row">
+            <div class='four columns'>
+                <br>
+                <br>
+                <br>
+                <br>
+                <p>
+                    Simpson's paradox is a phenomenon in probability and statistics, in which a trend appears in several different groups of data
+                    but disappears or reverses when these groups are combined.
+                </p>
+                <p>
+                    This result is often encountered in social-science and medical-science statistics
+                    and is particularly problematic when frequency data is unduly given causal interpretations.
+                    The paradox can be resolved when causal relations are appropriately taken care of in the statistical modeling.
+                    It has been used to try to inform the non-specialist or public audience about the kind of misleading results mis-applied statistics can generate.
+                    Martin Gardner wrote a popular account of Simpson's paradox in his March 1976 Mathematical Games column in Scientific American.
+
+                </p>
+                <div class="row">
+                    <div class="six columns" id="eigenvector1" style="color: #02893B; font-weight: bold"></div>
+                    <div class="six columns" id="eigenvector2" style="color: #EC7300; font-weight: bold"></div>
+                </div>
+                <p><br>
+                    You can alter the number of datasets used for the plot
+                </p>
+
+                <div>
+                    <label class="slider">
+
+                        <label class="sliderTitle" id="probetitle">Number of datasets
+                        </label>
+                        <span class="sliderMin">2</span>
+                        <input id="controller" class="inputs" type="range" value="2" min="2" max="5"
+                               step="1" onchange="plotter()"/>
+                        <span class="sliderMax">5</span>
+                    </label>
+                </div>
+                <button id="reset" onclick="indcor()">Individual Correlation</button>
+                <button id="animator" onclick="overallcor()" >Overall Correlation</button>
+
+                <div class="tab">
+                      <button class="tablinks" onclick="openCity(event, 'graph')" id = "defaultOpen">See the plot</button>
+                      <button class="tablinks" onclick="openCity(event, 'q1')">Question 1</button>
+                      <button class="tablinks" onclick="openCity(event, 'q2')">Question 2</button>
+                </div>
+
+            </div>
+
+            <div class="eight columns">
+
+                    <div id="graph" class="tabcontent" style="width: 100%; height: 80vh">
+                    </div>
+
+                    <div id="q1" class="tabcontent">
+                      <h3>Question 1</h3>
+                      <p>Hello there, this is question 1</p>
+                    </div>
+
+                    <div id="q2" class="tabcontent">
+                      <h3>Question 2</h3>
+                      <p>and this is the question 2</p>
+                    </div>
+
+
+        </div>
+        <!--THE BRAINS-->
+        <script src="scripts/Simpson.js"></script>
+</body>
+
+</html>

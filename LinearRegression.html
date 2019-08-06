@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+
+<head>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- math.js -->
+    <script language="JavaScript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.2.1/math.js"></script>
+
+    <!--Page Info-->
+    <title>Linear Regression</title>
+    <!--css link-->
+    <link rel="stylesheet" href="styles/skeleton.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <!--Required JS resources-->
+    <!--NB: better to have resources before the main body but still works even if they are not-->
+    <script src="scripts/plotly-1.47.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+    </script>
+    <script type="text/javascript" src="scripts/MathJax-master/MathJax.js">
+    </script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+</head>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Linear Regression</h1>
+        <div class="row">
+            <div class='four columns'>
+                <br>
+                <br>
+                <br>
+                <br>
+                <p>
+                    In statistics, linear regression is a linear approach to modeling the relationship between a scalar response (or dependent variable) and one or more explanatory variables (or independent variables).
+                    The case of one explanatory variable is called simple linear regression.
+                </p>
+                <p>
+                    In linear regression, the relationships are modeled using linear predictor functions whose unknown model parameters are estimated from the data.
+                    Such models are called linear models. Most commonly, the conditional mean of the response given the values of the explanatory variables (or predictors) is assumed to be an affine function of those values; less commonly, the conditional median or some other quantile is used.
+
+                </p>
+                <div class="row">
+                    <div class="six columns" id="eigenvector1" style="color: #02893B; font-weight: bold"></div>
+                    <div class="six columns" id="eigenvector2" style="color: #EC7300; font-weight: bold"></div>
+                </div>
+                <p><br>
+                    You can click on the plot to add more data points
+                </p>
+
+                <button id="mle" onclick="mle()">See the regression</button>
+                <button id="reset" onclick="deleteTrace()">Reset</button>
+                <div class="tab">
+                      <button class="tablinks" onclick="openCity(event, 'myPlot')" id = "defaultOpen">See the plot</button>
+                      <button class="tablinks" onclick="openCity(event, 'q1')">Residual plot</button>
+                      <button class="tablinks" onclick="openCity(event, 'q2')">Cook's distance</button>
+                </div>
+
+            </div>
+
+            <div class="eight columns">
+
+                    <div id="myPlot" class="tabcontent" style="width: 100%; height: 80vh">
+                    </div>
+
+
+                    <div id="q1" class="tabcontent">
+                        <h4>Residual plot</h4>
+                        <div id="myPlot2" style="width: 1100%; height: 72vh">
+                        </div>
+
+                    </div>
+
+                    <div id="q2" class="tabcontent">
+                      <h4>Cook's distance</h4>
+                        <div id="myPlot3" style="width: 1100%; height: 72vh">
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+        <!--THE BRAINS-->
+        <script src="scripts/Linear.js"></script>
+</body>
+
+</html>
