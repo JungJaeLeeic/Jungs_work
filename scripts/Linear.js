@@ -115,9 +115,24 @@ function mle() {
     var second = math.multiply(first, transpose(datasetx));
     var final = math.multiply(second, datasety)
 
-    var yhat = math.multiply(datasetx, final)
-    var residual = subvector(datasety,yhat)
-    var RSS = math.multiply(residual, residual)
+    var yhat = math.multiply(datasetx, final);
+    var residual = subvector(datasety,yhat);
+    var RSS = math.multiply(residual, residual);
+    var sighat = RSS/(datasetx.length - 2);
+    var H = math.multiply(datasetx, second);
+
+    var hii = [];
+
+    for (j=0; j<H.length; j++){
+        hii.push(H[j][j]);
+    }
+
+    var sresidual = [];
+
+    for (k = 0; k < H.length; k++){
+
+        sresidual.push(residual[k]/(math.sqrt(sighat*(1-hii[k]))));
+    }
 
     var newtrace = [{
     x: [-20,20],
@@ -165,16 +180,83 @@ function mle() {
 
     }
 
-    var cookstrace = [{
-    y: cooksdistance,
+    var standlev = [{
+    x: hii,
+    y: sresidual,
     mode: 'markers',
     type: 'scatter'
 
     }]
 
+    var cookstrace = [{
+    x: hii,
+    y: sresidual,
+    z: cooksdistance,
+        type: 'contour',
+        showscale: false,
+        contours: {
+          coloring: 'lines',
+          start: 0.5,
+          end: 5,
+          size: 0.5,
+          showlabels: true,
+          labelfont: {
+            family: 'Raleway',
+            size: 12,
+            color: 'black',
+          }
+        }
+        }
+    ];
+
+
+    var layout = {
+      xaxis: {
+        title: {
+          text: 'Leverage',
+        font: {
+            size: 18,
+            color: 'black'
+          }
+        },
+      },
+      yaxis: {
+        title: {
+          text: 'Standardised Residual',
+        font: {
+            size: 18,
+            color: 'black'
+          }
+        }
+      }
+    };
+
+    var layout2 = {
+      yaxis: {
+        title: {
+          text: 'Residual',
+        font: {
+            size: 18,
+            color: 'black'
+          }
+        },
+      },
+
+       xaxis: {
+        title: {
+          text: 'Point number',
+        font: {
+            size: 18,
+            color: 'black'
+          }
+        },
+      },
+    };
+
     Plotly.plot('myPlot',newtrace);
-    Plotly.plot('myPlot2',residualtrace);
-    Plotly.plot('myPlot3',cookstrace);
+    Plotly.plot('myPlot2',residualtrace,layout2);
+    Plotly.newPlot('myPlot3',cookstrace,layout);
+    Plotly.plot('myPlot3',standlev);
 
 }
 
@@ -235,7 +317,6 @@ function deleteTrace(){
       title:'Click on the plot to add more data points'
     };
 
-    var myPlot = document.getElementById('myPlot')
     Plotly.newPlot('myPlot', traces, layout, {hovermode: 'closest'});
 
     Number.prototype.between = function(min, max) {
