@@ -342,3 +342,10 @@ function openCity(evt, cityName) {
 
 
 document.getElementById("defaultOpen").click();
+
+function main(){
+    initGuidance(["myPlot","q1","q2"]);
+
+}
+
+$(document).ready(main);

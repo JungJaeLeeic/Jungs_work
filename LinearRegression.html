@@ -12,19 +12,43 @@
     <!--css link-->
     <link rel="stylesheet" href="styles/skeleton.css">
     <link rel="stylesheet" href="styles/style.css">
+     <link rel="stylesheet" href="styles/guidance.css">
     <!--Required JS resources-->
     <!--NB: better to have resources before the main body but still works even if they are not-->
+
     <script src="scripts/plotly-1.47.4.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="scripts/numeric/src/numeric.js"></script>
     <script src="scripts/math.min.js"></script>
-    </script>
+
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
 </head>
 </head>
 
 <body>
+
+    <div class="guide">
+        Instructions for use
+    </div>
+    <div class="guideModal">
+        <div class="guideTest"></div>
+        <button class="backBtn">◀ Back</button> <button class="nextBtn">Next ▶</button>
+        <div class="modalContent">
+            <p id="modal_0">
+                This is the guidance for Linear Regression.
+            </p>
+            <p id="modal_1" hidden>
+                Click on the plot to add more data points then click 'SEE THE REGRESSION' button to see the linear regression
+            </p>
+            <p id="modal_2" hidden>
+                Click on 'RESIDUAL PLOT' and 'COOK'S DISTANCE' buttons to see corresponding diagonal plots.
+            </p>
+            <p id="modal_3" hidden>
+                Click on 'RESET button to reset all the plots.
+            </p>
+        </div>
+    </div>
 
     <div class="container">
         <h1>Linear Regression</h1>
@@ -82,8 +106,10 @@
 
             </div>
         </div>
-        <!--THE BRAINS-->
+        <script src="scripts/guidance.js"></script>
         <script src="scripts/Linear.js"></script>
+
+
 </body>
 
 </html>

@@ -16,11 +16,35 @@
     <script src="scripts/numeric/src/numeric.js"></script>
     <script src="scripts/math.min.js"></script>`
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <!---<script src="scripts/guidance.css"></script> -->
+    <link rel="stylesheet" href="styles/guidance.css">
 
 </head>
 </head>
 
 <body>
+
+    <div class="guide">
+        Instructions for use
+    </div>
+    <div class="guideModal">
+        <div class="guideTest"></div>
+        <button class="backBtn">◀ Back</button> <button class="nextBtn">Next ▶</button>
+        <div class="modalContent">
+            <p id="modal_0">
+                This is the guidance for the Simpson's Paradox.
+            </p>
+            <p id="modal_1" hidden>
+                Use the slider to alter the number of data sets to be used in the plot.
+            </p>
+            <p id="modal_2" hidden>
+                Click "INDIVIDUAL CORRELATION" to see individual correlation of chosen number of datasets and Click "OVERALL CORRELATION" to see the overall correlation.
+            </p>
+            <p id="modal_3" hidden>
+                Click "CHALLENGE" to see a further question.
+            </p>
+        </div>
+    </div>
 
     <div class="container">
         <h1>The Simpson's Paradox</h1>
@@ -55,6 +79,7 @@
 
                         <label class="sliderTitle" id="probetitle">Number of datasets
                         </label>
+                        <br>
                         <span class="sliderMin">2</span>
                         <input id="controller" class="inputs" type="range" value="2" min="2" max="5"
                                step="1" onchange="plotter()"/>
@@ -66,8 +91,7 @@
 
                 <div class="tab">
                       <button class="tablinks" onclick="openCity(event, 'graph')" id = "defaultOpen">See the plot</button>
-                      <button class="tablinks" onclick="openCity(event, 'q1')">Question 1</button>
-                      <button class="tablinks" onclick="openCity(event, 'q2')">Question 2</button>
+                      <button class="tablinks" onclick="openCity(event, 'q1')" >Challenge</button>
                 </div>
 
             </div>
@@ -78,19 +102,20 @@
                     </div>
 
                     <div id="q1" class="tabcontent">
-                      <h3>Question 1</h3>
-                      <p>Hello there, this is question 1</p>
+                      <h6>Linear Regression must be found after identifying each individual group.
+                          <br>
+                          However, it is not always clear to separate data points into groups.</h6>
+                        <p>Here Support Vector Machine(SVM) enables us to do this automatically.</p>
+                        <div id="q2"  style = "width: 100%; height: 65vh">
+                        </div>
                     </div>
 
-                    <div id="q2" class="tabcontent">
-                      <h3>Question 2</h3>
-                      <p>and this is the question 2</p>
-                    </div>
 
 
         </div>
         <!--THE BRAINS-->
         <script src="scripts/Simpson.js"></script>
+        <script src="scripts/guidance.js"></script>
 </body>
 
 </html>
